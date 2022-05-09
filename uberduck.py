@@ -8,7 +8,7 @@ import json
 # Key:  pub_xazbjmtvvauyieiixy
 
 
-auth = HTTPBasicAuth('pub_xazbjmtvvauyieiixy', os.environ['Secret'])
+auth = HTTPBasicAuth('pub_xazbjmtvvauyieiixy', 'pk_80dca433-ecbe-46f8-acee-c3c6049a1de3')
 url = 'https://api.uberduck.ai/speak'
 
 
