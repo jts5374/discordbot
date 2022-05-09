@@ -38,7 +38,7 @@ async def play_audio():
     words = ''
     command = message.content
     if '!' in command:
-        command = command[command.index('!'):command.index(' ')].strip()
+        command = command[command.index('!'):command.index(' ')].replace(' ', '')
     if command in cmdkey:
         voice = cmdkey[command]
     
