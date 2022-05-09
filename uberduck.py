@@ -14,11 +14,11 @@ url = 'https://api.uberduck.ai/speak'
 
 
 
-def get_audio(tts = None):
+def get_audio(tts = None, voice = 'jerry-lawler'):
     if not tts:
         return 'No text entered'
     global auth, url    
-    payload = json.dumps({'speech': f"{tts}", 'voice': "spongebob", 'pace': 1}, indent=4)
+    payload = json.dumps({'speech': f"{tts}", 'voice': f"{voice}", 'pace': 1}, indent=4)
 
     res = requests.post(url, data = payload,  auth=auth)
     uuid = res.json()

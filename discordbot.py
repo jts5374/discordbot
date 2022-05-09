@@ -32,14 +32,22 @@ async def on_message(message):
 
 async def play_audio():    
     print('playaudio started')
-    
     message = await queue.get()
-    words = message.content.replace('!jerry', '').strip()
+    cmdkey = {'!jerry': 'jerry-lawler', '!sponge': 'spongebob', '!hank': 'hank-hill', '!nile':'nilered'}
+    voice = None
+    words = ''
+    command = message.content
+    if '!' in command:
+        command = command[command.index('!'):command.index(' ')].strip()
+    if command in cmdkey:
+        voice = cmdkey[command]
+    
+    
     user = message.author
-    if message.content.startswith('!jerry') and user.voice is not None: 
+    if voice and user.voice is not None: 
         
         voicechannel = user.voice.channel
-        audio = ud.get_audio(words)
+        audio = ud.get_audio(words, voice=voice)
         path = 'results/audio.wav'
 
         if audio == 'success':
