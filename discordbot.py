@@ -31,7 +31,7 @@ async def on_message(message):
 
 
 async def play_audio():    
-    print('playaudio started')
+    
     message = await queue.get()
     cmdkey = {
         '!jerry': 'jerry-lawler',
@@ -78,7 +78,8 @@ async def play_audio():
         else:
             await message.channel.send('Unable to retrieve voice. Try again')
     
-        
+    elif user.voice is None:
+        await message.channel.send('Join a voice channel and try again')
     client.is_ready= True
  
 
