@@ -33,12 +33,28 @@ async def on_message(message):
 async def play_audio():    
     print('playaudio started')
     message = await queue.get()
-    cmdkey = {'!jerry': 'jerry-lawler', '!sponge': 'spongebob', '!hank': 'hank-hill', '!nile':'nilered'}
+    cmdkey = {
+        '!jerry': 'jerry-lawler',
+        '!sponge': 'spongebob', 
+        '!hank': 'hank-hill', 
+        '!nile':'nilered', 
+        '!pstew':'patrickstewart',
+        '!samj':'slj',
+        '!norm':'norm-macdonald',
+        '!arnold':'arnold-schwarzenegger',
+        '!hal': 'hal-9000',
+        '!gg': 'gottfried',
+        '!vince':'vince-mcmahon',
+        
+
+        }
     voice = None
     words = ''
     command = message.content
     if '!' in command:
         command = command[command.index('!'):command.index(' ')].replace(' ', '')
+        words = message.content.replace(command, '').strip()
+        
     if command in cmdkey:
         voice = cmdkey[command]
     
@@ -51,7 +67,6 @@ async def play_audio():
         path = 'results/audio.wav'
 
         if audio == 'success':
-            await asyncio.sleep(2)
             vc = await voicechannel.connect()
             await asyncio.sleep(2)
             vc.play(discord.FFmpegPCMAudio(path))
@@ -62,8 +77,8 @@ async def play_audio():
                 
         else:
             await message.channel.send('Unable to retrieve voice. Try again')
-    else:
-        await message.channel.send('Join a voice channel and try again')
+    
+        
     client.is_ready= True
  
 
