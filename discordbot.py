@@ -83,7 +83,7 @@ async def play_audio():
  
 
 if __name__=='__main__':
-    my_secret = 'OTcyNDYzMjc3ODM1NzA2Mzk4.YnZbAA.dKWDQlMY3MKBoQZ7-D_pNecHpx4'
+    my_secret = os.environ['token']
       
     client.run(my_secret)
     
